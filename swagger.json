@@ -1,0 +1,103 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Masala Apps Project",
+      "description": "Masala Apps Project API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "APIs",
+        "description": "API for users in the system"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/summarize/getSummarize": {
+          "get": {
+            "tags": ["Summarizes"],
+            "summary": "Get all Summarize",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Summarize"
+                }
+              }
+            }
+          }
+        },
+        "/summarize/getSummarize/{id}": {
+            "get": {
+              "tags": ["Summarizes"],
+              "summary": "Get Summarize by ID",
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "$ref": "#/definitions/Summarize"
+                  }
+                }
+              }
+            }
+        },
+        "/summarize/addSummarize": {
+            "post": {
+              "tags": ["Summarizes"],
+              "summary": "Post Summarize",
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "$ref": "#/definitions/Summarize"
+                  }
+                }
+              }
+            }
+        }
+    },
+    "definitions": {
+        "Summarize": {
+          "required": ["userID", "username", "caption", "location", "summarize", "typeSummarize", "category", "createdDate"],
+          "properties": {
+            "userID": {
+              "type": "integer",
+              "uniqueItems": true
+            },
+            "username": {
+              "type": "string"
+            },
+            "caption": {
+              "type": "string"
+            },
+            "location": {
+                "type": "string"
+            },
+            "summarize": {
+                "type": "string"
+            },
+            "typeSummarize": {
+                "type": "string"
+            },
+            "category": {
+                "type": "string"
+            },
+            "createdDate": {
+                "type": "string"
+            }
+          }
+        },
+        "Summarizes": {
+          "type": "array",
+          "$ref": "#/definitions/Summarize"
+        }
+    }
+}
