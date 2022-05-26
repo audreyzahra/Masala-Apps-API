@@ -62,7 +62,21 @@
                 }
               }
             }
-        }
+        },
+        "/summarize/register": {
+          "post": {
+            "tags": ["Users"],
+            "summary": "Post User",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Summarize"
+                }
+              }
+            }
+          }
+      }
     },
     "definitions": {
         "Summarize": {

@@ -1,5 +1,8 @@
 const User = require("../Model/UserModel");
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+
+require('dotenv').config();
 
 const register =  async(req, res, next) => {
     try {
@@ -28,7 +31,45 @@ const register =  async(req, res, next) => {
     }
 };
 
+
+const login =  async(req, res, next) => {
+    try {
+        const {
+            email,
+            password,
+        } = req.body
+
+        const Cekuser = await User.findOne({
+            where: {email: email}
+        })
+
+        if (!Cekuser){
+            return res.status(404).send("User Not found.");
+        }
+
+        const passwordIsValid = bcrypt.compareSync(password, Cekuser.password);
+
+          if (!passwordIsValid) {
+            return res.status(401).send({
+              message: "Invalid Password!",
+            });
+          }
+
+          const token = jwt.sign({ userID: Cekuser.userID }, process.env.JWT_KEY, { expiresIn: 86400 });
+          res.json({
+            status:'true',
+            message: 'success', 
+            token
+        });
+        
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
 /// tes comit
 module.exports = {
     register,
+    login
 }
