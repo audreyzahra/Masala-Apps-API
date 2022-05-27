@@ -11,6 +11,17 @@ const register =  async(req, res, next) => {
             email,
             passwords,
         } = req.body
+
+        if (!(name && email && passwords)) {
+            res.status(400).send("All input is required");
+          }
+
+          const CheckUser = await User.findOne({  where: {email: email} });
+
+          if (CheckUser) {
+            return res.status(409).send("User Already Exist. Please Login");
+          }
+
         var salt = bcrypt.genSaltSync(10);
         var  password  = bcrypt.hashSync(passwords, salt);
         const newUser = new User ({
@@ -42,6 +53,10 @@ const login =  async(req, res, next) => {
         const Cekuser = await User.findOne({
             where: {email: email}
         })
+
+        if (!(email && password)) {
+            res.status(400).send("All input is required");
+          }
 
         if (!Cekuser){
             return res.status(404).send("User Not found.");
