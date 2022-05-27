@@ -66,17 +66,31 @@
         "/summarize/register": {
           "post": {
             "tags": ["Users"],
-            "summary": "Post User",
+            "summary": "Post Register",
             "responses": {
               "200": {
                 "description": "OK",
                 "schema": {
-                  "$ref": "#/definitions/Summarize"
+                  "$ref": "#/definitions/Register"
                 }
               }
             }
           }
-      }
+      },
+      "/summarize/login": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Post Login",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          }
+        }
+    }
     },
     "definitions": {
         "Summarize": {
@@ -105,6 +119,31 @@
                 "type": "string"
             },
             "createdDate": {
+                "type": "string"
+            }
+          }
+        },
+        "Register": {
+          "required": ["name", "email", "password"],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+                "type": "string"
+            }
+          }
+        },
+        "Login": {
+          "required": ["email", "password"],
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
                 "type": "string"
             }
           }
