@@ -1,11 +1,12 @@
 const SummarizeController = require('./Controller/SummarizeController');
 const UserController = require('./Controller/UserController');
 const router = require('express').Router();
+const auth = require('./middleware/auth');
 
 // Routes untuk Summarize
 router.post('/addSummarize', SummarizeController.addSummarize);
-router.get('/getSummarize', SummarizeController.getSummarize);
-router.get('/getSummarize/:id', SummarizeController.getSummarizeByID);
+router.get('/getSummarize', auth, SummarizeController.getSummarize);
+router.get('/getSummarize/:id', auth, SummarizeController.getSummarizeByID);
 router.post('/register', UserController.register);
 router.post('/login', UserController.login);
 
