@@ -34,7 +34,10 @@ const addSummarize =  async(req, res, next) => {
         });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({
+            status:'false',
+            message: 'Internal Server Error'
+        });
     }
 }
 
@@ -73,7 +76,10 @@ const getSummarize = async(req, res, next) => {
         }
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({
+            status:'false',
+            message: 'Internal Server Error'
+        });
     }
 }
 
@@ -101,7 +107,10 @@ const getSummarizeByID =  async(req, res, next) => {
         }
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Server Error");
+        res.status(500).json({
+            status:'false',
+            message: 'Internal Server Error'
+        });
     }
 }
 

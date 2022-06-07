@@ -9,28 +9,34 @@
         "url": "https://opensource.org/licenses/MIT"
       }
     },
-    "host": "localhost:3000",
+    "host": "localhost:8000",
     "basePath": "/",
-    "tags": [
-      {
-        "name": "APIs",
-        "description": "API for users in the system"
-      }
-    ],
     "schemes": ["http"],
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
         "/summarize/getSummarize": {
-          "get": {
+          "post": {
             "tags": ["Summarizes"],
             "summary": "Get all Summarize",
-            "responses": {
-              "200": {
-                "description": "OK",
+            "parameters": [
+              {
+                "name": "body",
+                "in": "body",
                 "schema": {
                   "$ref": "#/definitions/Summarize"
                 }
+              },
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
               }
             }
           }
@@ -39,12 +45,24 @@
             "get": {
               "tags": ["Summarizes"],
               "summary": "Get Summarize by ID",
+              "parameters": [
+                {
+                  "name": "path",
+                  "in": "path",
+                  "schema" : {
+                    "type": "integer"
+                  }
+                },
+                {
+                  "name": "x-access-token",
+                  "in": "header",
+                  "required": "true",
+                  "type": "string"
+                }
+              ],
               "responses": {
                 "200": {
-                  "description": "OK",
-                  "schema": {
-                    "$ref": "#/definitions/Summarize"
-                  }
+                  "description": "OK"
                 }
               }
             }
@@ -53,45 +71,72 @@
             "post": {
               "tags": ["Summarizes"],
               "summary": "Post Summarize",
-              "responses": {
-                "200": {
-                  "description": "OK",
+              "parameters": [
+                {
+                  "in": "body",
                   "schema": {
                     "$ref": "#/definitions/Summarize"
                   }
+                },
+                {
+                  "name": "x-access-token",
+                  "in": "header",
+                  "required": "true",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
                 }
               }
             }
         },
-        "/summarize/register": {
+        "/user/register": {
           "post": {
             "tags": ["Users"],
             "summary": "Post Register",
-            "responses": {
-              "200": {
-                "description": "OK",
+            "parameters": [
+              {
+                "in": "body",
                 "schema": {
                   "$ref": "#/definitions/Register"
                 }
               }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
             }
           }
-      },
-      "/summarize/login": {
-        "post": {
-          "tags": ["Users"],
-          "summary": "Post Login",
-          "responses": {
-            "200": {
-              "description": "OK",
-              "schema": {
-                "$ref": "#/definitions/Login"
+        },
+        "/user/login": {
+          "post": {
+            "tags": ["Users"],
+            "summary": "Post Login",
+            "parameters": [
+              {
+                "in": "body",
+                "schema": {
+                  "$ref": "#/definitions/Login"
+                }
+              },
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
               }
             }
           }
         }
-    }
-    },
+      },
     "definitions": {
         "Summarize": {
           "required": ["userID", "username", "caption", "location", "summarize", "typeSummarize", "category", "createdDate"],

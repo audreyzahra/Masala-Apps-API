@@ -1,6 +1,6 @@
 const sequelize = require("sequelize");
 
-const db = new sequelize("masala-apps", "root", "", {
+const db = new sequelize("masala-apps", "root", "root", {
     dialect:"mysql"
 });
 
