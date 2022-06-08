@@ -15,23 +15,15 @@
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "paths": {
-        "/summarize/getSummarize": {
-          "post": {
+        "/summarize/": {
+          "get": {
             "tags": ["Summarizes"],
             "summary": "Get all Summarize",
             "parameters": [
               {
-                "name": "body",
-                "in": "body",
-                "schema": {
-                  "$ref": "#/definitions/Summarize"
-                }
-              },
-              {
                 "name": "x-access-token",
                 "in": "header",
-                "required": "true",
-                "type": "string"
+                "required": "true"
               }
             ],
             "responses": {
@@ -66,6 +58,65 @@
                 }
               }
             }
+        },
+        "/summarize/getSummarize/{category}": {
+          "get": {
+            "tags": ["Summarizes"],
+            "summary": "Get Summarize by Category",
+            "parameters": [
+              {
+                "name": "category",
+                "in": "path",
+                "schema" : {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
+        "/summarize/getSummarize/{category}/{location}": {
+          "get": {
+            "tags": ["Summarizes"],
+            "summary": "Get Summarize by Location",
+            "parameters": [
+              {
+                "name": "category",
+                "in": "path",
+                "schema" : {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "location",
+                "in": "path",
+                "schema" : {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
         },
         "/summarize/addSummarize": {
             "post": {

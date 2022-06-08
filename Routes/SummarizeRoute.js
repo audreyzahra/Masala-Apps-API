@@ -4,7 +4,10 @@ const auth = require('../middleware/auth');
 
 // Routes untuk Summarize
 router.post('/addSummarize', auth, SummarizeController.addSummarize);
-router.post('/getSummarize', auth, SummarizeController.getSummarize);
-router.get('/getSummarize/:id', auth, SummarizeController.getSummarizeByID);
+router.get('/', auth, SummarizeController.getAllSummarize);
+router.get('/getSummarize/:category', auth, SummarizeController.getSummarizeByCategory);
+router.get('/getSummarize/:category/:location', auth, SummarizeController.getSummarizeByLocation);
+// router.get('/getSummarize/:id', auth, SummarizeController.getSummarizeByID);
+
 
 module.exports = router;
