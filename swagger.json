@@ -33,6 +33,24 @@
             }
           }
         },
+        "/summarize/getSummarizeList": {
+          "get": {
+            "tags": ["Summarizes"],
+            "summary": "Get all Summarize",
+            "parameters": [
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
         "/summarize/getSummarize/{id}": {
             "get": {
               "tags": ["Summarizes"],
@@ -89,6 +107,39 @@
           "get": {
             "tags": ["Summarizes"],
             "summary": "Get Summarize by Location",
+            "parameters": [
+              {
+                "name": "category",
+                "in": "path",
+                "schema" : {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "location",
+                "in": "path",
+                "schema" : {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "x-access-token",
+                "in": "header",
+                "required": "true",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
+        "/summarize/getSummarizeList/{category}/{location}": {
+          "get": {
+            "tags": ["Summarizes"],
+            "summary": "Get Summarize by Location List",
             "parameters": [
               {
                 "name": "category",
