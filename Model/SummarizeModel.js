@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require("../config/db");
 
 const Summarize = db.define(
-    "summarizetable",
+    "SummarizeTable",
     {
         userID: {type: Sequelize.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
         username: {type: Sequelize.STRING, allowNull: false},
